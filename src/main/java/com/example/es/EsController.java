@@ -1,5 +1,6 @@
 package com.example.es;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,15 @@ public class EsController
     @GetMapping("/all")
     public String searchAll()
     {
-        esDao.searchAll();
-        return "result";
+        List<Document> documents = esDao.searchAll();
+        String result = "";
+
+        for(Document doc : documents)
+        {
+            result += "title: ";
+            result += doc.getC_title();
+            result += '\n'; 
+        }
+        return result;
     }
 }
