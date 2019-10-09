@@ -38,7 +38,7 @@ public class EsDao
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
         SearchResponse searchResponse = new SearchResponse();
 
-        searchSourceBuilder.query(QueryBuilders.moreLikeThisQuery(fields, likeThese, null));
+        searchSourceBuilder.query(QueryBuilders.moreLikeThisQuery(fields, likeThese, null).minTermFreq(1).minDocFreq(1));
         searchRequest.source(searchSourceBuilder);
 
         try
